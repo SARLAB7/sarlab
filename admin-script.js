@@ -525,19 +525,29 @@ async function procesarDescuentoStock(pedidoId) {
 // --- 4. GESTIÓN DE CARTA ---
 function escucharCarta() {
     onSnapshot(collection(db, "platos"), (snap) => {
-        const list = document.getElementById('inv-list'); if (!list) return;
-const cats = { 
-    sandwich: { titulo: "Sandwich", platos: [] }, 
-    naturales: { titulo: "Jugos Naturales", platos: [] }, 
-    Bebidas: { titulo: "Otras bebidas", platos: [] }, 
-    Adiciones: { titulo: "Adiciones", platos: [] }, 
-   
-   
-};        
+        const list = document.getElementById('inv-list'); 
+        if (!list) return;
+        
+        // CORRECCIÓN 1: Las llaves deben coincidir EXACTAMENTE con los 'value' del HTML
+        // CORRECCIÓN 2: Se agregó la categoría 'otros' para evitar que se rompa si hay una categoría desconocida
+        const cats = { 
+            Sandwich: { titulo: "Sandwich", platos: [] }, 
+            Naturales: { titulo: "Jugos Naturales", platos: [] }, 
+            Bebidas: { titulo: "Otras bebidas", platos: [] }, 
+            Adiciones: { titulo: "Adiciones", platos: [] }, 
+            otros: { titulo: "Otros", platos: [] } 
+        };        
+        
         snap.forEach(d => {
             const it = d.data(); it.id = d.id; menuGlobal[it.nombre] = it;
-            if (cats[it.categoria]) cats[it.categoria].platos.push(it); else cats['otros'].platos.push(it);
+            // Si la categoría existe en cats, lo mete ahí. Si no, lo mete en 'otros'
+            if (cats[it.categoria]) {
+                cats[it.categoria].platos.push(it); 
+            } else {
+                cats['otros'].platos.push(it);
+            }
         });
+        
         let h = '';
         for (const k in cats) {
             if (cats[k].platos.length === 0) continue;
