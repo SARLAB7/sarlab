@@ -116,11 +116,10 @@ body {
     margin-bottom: 0; 
     padding: 20px 10px; 
     background: transparent; 
-    border-bottom: 1px dashed #D5D5D0; /* Línea punteada sutil como referencia 2 */
+    border-bottom: 1px dashed #D5D5D0; 
     transition: background 0.3s ease;
 }
 
-/* Remueve la línea punteada del último item */
 .dish-item:last-child {
     border-bottom: none;
 }
@@ -177,7 +176,6 @@ body {
     padding-top: 15px; 
 }
 
-/* Píldoras de Ingredientes limpios */
 .ing-container { 
     display: flex; 
     flex-wrap: wrap; 
@@ -204,7 +202,6 @@ body {
     background: rgba(200, 75, 49, 0.05);
 }
 
-/* Controles de cantidad minimalistas */
 .qty-wrapper { 
     display: flex; 
     justify-content: center; 
@@ -238,7 +235,6 @@ body {
 
 .btn-qty:hover { background: var(--accent-light); }
 
-/* Botón Añadir limpio */
 .btn-add-cart { 
     width: 100%; 
     background: var(--surface); 
