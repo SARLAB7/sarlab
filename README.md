@@ -1,2 +1,2 @@
-# ikurestaurantemenu
-Ikurestaurantemenuinteractivo
+# restaurantemenu
+restaurantemenuinteractivo
